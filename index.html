@@ -1,1 +1,384 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Learn BD</title>
+  <style>
+    :root {
+      --bg: #08110b;
+      --panel: #0f1b13;
+      --panel-2: #132319;
+      --text: #e8fff0;
+      --muted: #9ec8aa;
+      --accent: #39ff88;
+      --accent-2: #19c96b;
+      --border: rgba(57, 255, 136, 0.18);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(57,255,136,0.10), transparent 30%),
+        linear-gradient(180deg, #061009 0%, #08110b 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 17, 11, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero {
+      padding: 90px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(57,255,136,0.08);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 650px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid var(--border);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #041109;
+      border: none;
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary:hover {
+      color: var(--accent);
+      border-color: rgba(57,255,136,0.35);
+    }
+
+    .terminal {
+      background: linear-gradient(180deg, rgba(16, 28, 19, 0.95), rgba(10, 19, 13, 0.98));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .terminal-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3cff8f;
+      opacity: 0.85;
+    }
+
+    .terminal-body {
+      padding: 20px;
+      font-family: "Courier New", monospace;
+      color: #bfffd4;
+      font-size: 0.95rem;
+      min-height: 260px;
+    }
+
+    .terminal-body .muted { color: #85b694; }
+    .terminal-body .accent { color: var(--accent); }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .topic-item {
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(15, 27, 19, 0.72);
+    }
+
+    .topic-item strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .warning {
+      border-left: 4px solid var(--accent);
+      background: rgba(57,255,136,0.08);
+      padding: 18px;
+      border-radius: 14px;
+      color: #d9ffe7;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .topics {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Cyber<span>Learn</span> BD</div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#topics">Topics</a>
+        <a href="#safety">Safety</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">Ethical Hacking • Cybersecurity Learning • GitHub Pages Ready</div>
+          <h1>Learn Ethical Hacking the Right Way</h1>
+          <p>
+            এটি একটি cybersecurity learning website template। এখানে ethical hacking, Linux,
+            networking, web security, এবং CTF practice-এর মতো বিষয়গুলো beginner-friendly
+            ভাবে দেখানো যাবে।
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#topics">Start Learning</a>
+            <a class="btn btn-secondary" href="#safety">Legal Notice</a>
+          </div>
+          <p>
+            GitHub repository-তে upload করে GitHub Pages চালু করলেই এই সাইট live করা যাবে।
+          </p>
+        </div>
+
+        <div class="terminal">
+          <div class="terminal-top">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="terminal-body">
+            <div><span class="accent">user@cyberlab</span>:~$ git init</div>
+            <div><span class="accent">user@cyberlab</span>:~$ git add .</div>
+            <div><span class="accent">user@cyberlab</span>:~$ git commit -m "first site"</div>
+            <div><span class="accent">user@cyberlab</span>:~$ git branch -M main</div>
+            <div><span class="accent">user@cyberlab</span>:~$ git remote add origin your-repo-url</div>
+            <div><span class="accent">user@cyberlab</span>:~$ git push -u origin main</div>
+            <br />
+            <div class="muted">Status: ready for GitHub Pages deployment</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About This Site</h2>
+        <p class="section-subtitle">
+          এই template টি educational purpose-এর জন্য বানানো হয়েছে। আপনি চাইলে এটাকে নিজের
+          নাম, logo, lessons, writeups, tools list, এবং blog section দিয়ে customize করতে পারবেন।
+        </p>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <h2 class="section-title">Main Features</h2>
+        <p class="section-subtitle">শুরু করার জন্য দরকারি কিছু section আগে থেকেই রাখা হয়েছে।</p>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Beginner Friendly</h3>
+            <p>নতুনদের জন্য structured content: basics, tools, labs, practice roadmap.</p>
+          </div>
+          <div class="card">
+            <h3>GitHub Ready</h3>
+            <p>এক ফাইলের site, তাই repo-তে upload করে সহজেই publish করা যাবে।</p>
+          </div>
+          <div class="card">
+            <h3>Dark Cyber Theme</h3>
+            <p>Cybersecurity style look with dark background, green accent, and terminal UI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topics">
+      <div class="container">
+        <h2 class="section-title">Learning Topics</h2>
+        <p class="section-subtitle">এখানে আপনি আপনার course বা content section যোগ করতে পারবেন।</p>
+        <div class="topics">
+          <div class="topic-item">
+            <strong>1. Linux Basics</strong>
+            Command line, file permissions, package install, basic scripting.
+          </div>
+          <div class="topic-item">
+            <strong>2. Networking Basics</strong>
+            IP, ports, DNS, HTTP/HTTPS, packets, scanning concepts.
+          </div>
+          <div class="topic-item">
+            <strong>3. Web Security</strong>
+            OWASP Top 10, XSS, SQL injection demo, authentication basics.
+          </div>
+          <div class="topic-item">
+            <strong>4. Tools Overview</strong>
+            Nmap, Burp Suite, Wireshark, Gobuster, Nikto — legal lab use only.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="safety">
+      <div class="container">
+        <h2 class="section-title">Legal & Safety Notice</h2>
+        <div class="warning">
+          এই website শুধুমাত্র educational এবং authorized lab / CTF / নিজের system-এ practice করার জন্য।
+          Illegal hacking, unauthorized access, বা real-world attack support করা হয় না।
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact / GitHub</h2>
+        <p class="section-subtitle">
+          এখানে আপনার GitHub profile, Facebook page, Telegram, বা email যোগ ক
